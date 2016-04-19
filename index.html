@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- CSS Imports -->
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/themes/css/cartodb.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <!-- Map -->
+  <div id="map" class="map">
+    <!-- <div class="AddressForm">
+      <input id="AddressForm" type="text" placeholder="Input Location">
+    </div> -->
+
+  </div>
+  <body>
+    <!-- Buttons -->
+    <button id="get-Info">
+      <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="modal" data-target="#infoModal"></span>
+    </button>
+
+
+    <button id="get-Location" onclick="getLocation()">
+      <span class="glyphicon glyphicon-map-marker" aria-hidden"true" ></span>
+    </button>
+
+    <button id="rate-button">
+      <span class="glyphicon glyphicon-usd" aria-hidden="true" data-toggle="modal" data-target="#rateModal"></span>
+    </button>
+
+    <!--Address Form  -->
+
+    <div class="AddressForm">
+        <input id="AddressForm" placeholder="Input Location" type="text" class="AddressForm">
+    </div>
+
+
+    <!-- Modals -->
+    <div id="rateModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Current Rates</h4>
+          </div>
+          <div class="modal-body">
+            <ul>
+              <li style="color:#FFCC00"><span style="color:	#000000">$1.00</span></li>
+              <li style="color:#FFA300"><span style="color:#000000">$1.25</span></li>
+              <li style="color:#FF5C00"><span style="color:#000000">$1.50</span></li>
+              <li style="color:#F84F40"><span style="color:#000000">$1.75</span></li>
+              <li style="color:#D6301D"><span style="color:#000000">$2.00</span></li>
+              <li style="color:#B81609"><span style="color:#000000">$2.50</span></li>
+              <li style="color:#850200"><span style="color:#000000">$3.00</span></li>
+              <li style="color:#FFFFFF"><span style="color:#000000">Data Unavailable</span></li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="infoModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">About This Application</h4>
+          </div>
+          <div class="modal-body">
+            This mobile-optimized app allows you to explore Pittsburgh parking rates.
+            <br><br>
+            Input your destination into the search bar
+            <br><br>
+            OR
+            <br><br>
+            Click the marker button (top right) to locate yourself to see nearby rates<br>
+            <br>
+            Hover over the kiosks on the map for more info.<br>
+            <br>
+            ___________
+            <br><br>
+            This application shows March, 2013 rates. This app is for demonstration only.
+            <br><br>
+            Created by Michael Fichman, 2016.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- <div id="rateModal" class="modal fade" role="dialog">
+    <div class="modal-dialog"> -->
+
+
+
+
+    <!-- Sidebar -->
+    <!-- <div class="sidebar">
+                <div class="cartodb-legend category" style="display: block;">
+                    <ul>
+                        <li>
+                            <div class="bullet" style=
+                            "background: #FFCC00"></div>$1.00
+                        </li>
+                        <li>
+                            <div class="bullet" style=
+                            "background: #FFA300"></div>$1.25
+                        </li>
+                        <li>
+                            <div class="bullet" style=
+                            "background: #FF5C00"></div>$1.50
+                        </li>
+                        <li>
+                            <div class="bullet" style=
+                            "background: #F84F40"></div>$1.75
+                        </li>
+                        <li>
+                            <div class="bullet" style=
+                            "background: #D6301D"></div>$2.00
+                        </li>
+                        <li>
+                            <div class="bullet" style=
+                            "background: #B81609"></div>$2.50
+                        </li>
+                        <li>
+                            <div class="bullet" style=
+                            "background: #850200"></div>$3.00
+                        </li>
+                        <li>
+                            <div class="bullet" style=
+                            "background: #FFFFFF"></div>NA
+                        </li>
+                    </ul>
+            </div>
+            <div class = "info">
+                Explore parking rates before you depart.
+                <br><br>
+                Input your destination into the search bar
+                <br><br>
+                OR
+                <br><br>
+                Click the marker button (top right) to see nearby rates<br>
+                <br>
+                Hover over the kiosks on the map for more info.<br>
+            </div>
+  </div> -->
+
+    <!-- Javascript Imports -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/cartodb.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.js"></script>
+    <script src="js/funcs.js"></script>
+    <script src="js/setup.js"></script>
+  </body>
+</html>
